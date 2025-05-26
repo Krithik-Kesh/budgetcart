@@ -1,2 +1,2 @@
 # Budget Cart
-Enabling perfect competition in imperfect markets.
+Enabling perfect knowledge in imperfect markets.
