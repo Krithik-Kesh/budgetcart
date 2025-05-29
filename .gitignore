@@ -27,6 +27,10 @@ __pycache__/
 hs_err_pid*
 replay_pid*
 
+# Environment Variables
+.env
+.env.*
+
 # Intellij IDEA
 .idea/
 *.iml
