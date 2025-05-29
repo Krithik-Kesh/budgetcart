@@ -23,13 +23,7 @@
 hs_err_pid*
 replay_pid*
 
-.idea/.gitignore
-.idea/budgetcart.iml
-.idea/inspectionProfiles/Project_Default.xml
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-
 .gitignore
-
+*.DS_Store
+*.iml
+*.xml
