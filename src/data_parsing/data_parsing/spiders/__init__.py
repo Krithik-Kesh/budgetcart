@@ -3,7 +3,7 @@ from pathlib import Path
 import scrapy
 
 
-class QuotesSpider(scrapy.Spider):
+class Spider(scrapy.Spider):
     name = "data"
 
     async def start(self):
