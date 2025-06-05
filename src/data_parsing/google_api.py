@@ -1,6 +1,6 @@
 import requests
 
-url = "https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key=AIzaSyD1q9Kb6mudmD4FvEJ7f1v5J9r7BG7dv3E"
+url = "https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key= EMPTY API"
 
 user_loc = {
   "includedTypes": ["grocery_store"],
