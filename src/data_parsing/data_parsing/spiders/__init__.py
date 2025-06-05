@@ -2,13 +2,12 @@ from pathlib import Path
 
 import scrapy
 
-
-class Spider(scrapy.Spider):
+class Grab_Eggs(scrapy.Spider):
     name = "data"
 
     async def start(self):
         urls = [
-            "https://api.pcexpress.ca/pcx-bff/api/v1/products/20812144001_EA?lang=en&date=27052025&pickupType=STORE&storeId=1029&banner=loblaw",
+            "https://api.pcexpress.ca/pcx-bff/api/v2/products/search",
             "https://cdn.contentful.com/spaces/0dlg9rxz8nvy/environments/master/entries?content_type=pageReact&locale=en-CA&include=10&fields.slug=pdp"
             #second link is not really needed right now but will be for future features
         ]
