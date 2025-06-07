@@ -1,20 +1,29 @@
-import requests
+import googlemaps
+import pandas as pd
 
-url = "https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key= EMPTY API"
+def turn_miles_to_meters(miles):
+  try:
+    return miles * 1,609.344
+  except:
+    return 0
 
-user_loc = {
-  "includedTypes": ["grocery_store"],
-  "maxResultCount": 10,
-  "locationRestriction": {
-    "circle": {
-      "center": {
-        "latitude": 43.646500,
-        "longitude": -79.389577},
-      "radius": 500.0
-    }
-  }
-}
+#API STUFF
+API_KEY = open('API_KEY.txt', 'r').read()
+ME = googlemaps.Client(API_KEY)
 
-location_requests = requests.post(url, json = user_loc)
+#USER LOCATION INITIALIZATION AND GOOGLE API STORE FINDER
+user_location = (43.647068, -79.390436) #Generic location
+search = 'grocery_store'
+distance = turn_miles_to_meters(15)
+list_of_stores = []
 
-print(location_requests.status_code)
+response = ME.places_nearby(
+  location = user_location,
+  keyword = search,
+  name = 'grocery stores',
+  radius = distance
+)
+
+list_of_stores.extend(response.get('results'))
+file = open('results.txt', 'w')
+file.writelines(str(list_of_stores))
