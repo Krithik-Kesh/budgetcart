@@ -1,35 +1,36 @@
-import googlemaps
 import os
 from dotenv import load_dotenv
+from googlemaps import places
+import requests
 
-MILES_TO_METRES = 1,609.344
+load_dotenv(verbose=True)
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 
-load_dotenv()
-GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
+api_url = 'https://places.googleapis.com/v1/places:searchNearby'
 
-def turn_miles_to_meters(miles):
-  try:
-    return miles * MILES_TO_METRES
-  except ValueError as val:
-    print(f"{val} not a valid input.")
+#Parameters of search and API
+header = {
+    'Content-Type': 'application/json',
+    "X-Goog-Api-Key": GOOGLE_MAPS_API_KEY,
+    "X-Goog-FieldMask": 'places.location,places.displayName,places.shortFormattedAddress,places.websiteUri'
+}
 
-#API STUFF
-ME = googlemaps.Client(GOOGLE_MAPS_API_KEY)
+#User information for search input
+user_search_information = {
+    "includedTypes": ["grocery_store"],
+    "maxResultCount": 10,
+    "locationRestriction": {
+        "circle": {
+            "center": {
+                "latitude": 43.65968025633139,
+                "longitude": -79.3980180711644
+            },
+            "radius": 500.0
+        }
+    }
+}
 
-#USER LOCATION INITIALIZATION AND GOOGLE API STORE FINDER
-user_location = (43.647068, -79.390436) #Generic location
-search = 'grocery_store'
-distance = turn_miles_to_meters(15)
-list_of_stores = []
-
-c
-response = ME.places_nearby(
-  location = user_location,
-  keyword = search,
-  name = 'grocery stores',
-  radius = distance
-)
-
-list_of_stores.extend(response.get('results'))
-file = open('../results.txt', 'w')
-file.writelines(str(list_of_stores))
+#response
+response = requests.post(api_url, headers=header, json=user_search_information)
+data = response.text
+print(data)
