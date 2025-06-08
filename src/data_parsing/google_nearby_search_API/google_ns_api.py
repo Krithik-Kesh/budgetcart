@@ -32,5 +32,5 @@ user_search_information = {
 
 #response
 response = requests.post(api_url, headers=header, json=user_search_information)
-data = response.text
-print(data)
+data = response.json
+
