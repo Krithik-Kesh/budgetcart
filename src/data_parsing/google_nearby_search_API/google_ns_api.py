@@ -1,15 +1,20 @@
 import googlemaps
-import pandas as pd
+import os
+from dotenv import load_dotenv
+
+MILES_TO_METRES = 1,609.344
+
+load_dotenv()
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
 def turn_miles_to_meters(miles):
   try:
-    return miles * 1,609.344
-  except:
-    return 0
+    return miles * MILES_TO_METRES
+  except ValueError as val:
+    print(f"{val} not a valid input.")
 
 #API STUFF
-API_KEY = open('devcontainer.env', 'r').read()
-ME = googlemaps.Client(API_KEY)
+ME = googlemaps.Client(GOOGLE_MAPS_API_KEY)
 
 #USER LOCATION INITIALIZATION AND GOOGLE API STORE FINDER
 user_location = (43.647068, -79.390436) #Generic location
@@ -17,6 +22,7 @@ search = 'grocery_store'
 distance = turn_miles_to_meters(15)
 list_of_stores = []
 
+c
 response = ME.places_nearby(
   location = user_location,
   keyword = search,
