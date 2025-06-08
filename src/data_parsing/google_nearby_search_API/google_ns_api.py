@@ -8,7 +8,7 @@ def turn_miles_to_meters(miles):
     return 0
 
 #API STUFF
-API_KEY = open('API_KEY.txt', 'r').read()
+API_KEY = open('devcontainer.env', 'r').read()
 ME = googlemaps.Client(API_KEY)
 
 #USER LOCATION INITIALIZATION AND GOOGLE API STORE FINDER
@@ -25,5 +25,5 @@ response = ME.places_nearby(
 )
 
 list_of_stores.extend(response.get('results'))
-file = open('results.txt', 'w')
+file = open('../results.txt', 'w')
 file.writelines(str(list_of_stores))
